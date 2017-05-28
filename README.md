@@ -1,8 +1,7 @@
 Chrome News Extension
 ==========
 
-![Demo](https://cloud.githubusercontent.com/assets/25512369/26526284/3830cc4c-4393-11e7-8288-d0b985d679c2.png)
-
+![Demo](https://cloud.githubusercontent.com/assets/25512369/26526448/31c28d7c-4399-11e7-8765-8f27565f03c7.png)
 
 Installing
 
