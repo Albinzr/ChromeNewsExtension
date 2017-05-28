@@ -39,7 +39,7 @@ function getLatestNewsURL() {
 }
 
 function getSectionNewsURL() {
-    console.log("stories?offset=" + offSet + "&limit=" + limit + "&section=")
+
     return "stories?offset=" + offSet + "&limit=" + limit + "&section="
 }
 //End of URL
@@ -115,8 +115,6 @@ function getStories(autoLoad) {
     var trackUrl = getCurrentURL(currentUrlType);
     xmlhttp.onload = function() {
         if (xmlhttp.status == 200) {
-
-            console.log(xmlhttp)
             data = JSON.parse(xmlhttp.responseText);
             if (Object.keys(data).length < limit) {
                 loadMoreStatus = false
@@ -124,7 +122,6 @@ function getStories(autoLoad) {
             if (autoLoad) {
 
             }
-            console.log(data, "initial")
             loadMoreStatus = true;
             if (currentUrlType == urlType.search) {
                 stories = data.results.stories
@@ -147,7 +144,6 @@ function getStories(autoLoad) {
         }
     };
     xmlhttp.open("GET", trackUrl, true);
-    console.log(trackUrl);
     xmlhttp.send(null);
     var storiesTag = document.getElementById("scroll-point");
     scrollTo(storiesTag, 0, 50);
@@ -211,25 +207,24 @@ function search() {
 function scrollReachedBottom(o) {
     if (o.target.offsetHeight + o.target.scrollTop == o.target.scrollHeight) {
         if (loadMoreStatus) {
+            offSet = offSet + 10;
             loadMore(getCurrentURL(currentUrlType))
         }
     }
 }
 // Load more story on scroll
 function loadMore(currentURL) {
-    offSet = offSet + 10;
+    
     var data = {};
     var stories = ""
     var xmlhttp = new XMLHttpRequest();
     var trackUrl = currentURL;
-
     xmlhttp.onload = function() {
         if (xmlhttp.status == 200) {
             data = JSON.parse(xmlhttp.responseText);
             if (Object.keys(data).length < limit) {
                 loadMoreStatus = false
             }
-            console.log(data, "load more");
             loadMoreStatus = true;
             var stories = data.stories;
             if (currentUrlType == urlType.search) {
