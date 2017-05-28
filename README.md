@@ -19,7 +19,7 @@ Features / Description
 - Auto Fetch
 - Search 
 - Section/Category Access
-- Infinate Scroll
+- Infinite Scroll
 - keyword search from any website
 
 License
