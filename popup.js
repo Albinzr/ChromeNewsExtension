@@ -211,13 +211,13 @@ function search() {
 function scrollReachedBottom(o) {
     if (o.target.offsetHeight + o.target.scrollTop == o.target.scrollHeight) {
         if (loadMoreStatus) {
+            offSet = offSet + 10;
             loadMore(getCurrentURL(currentUrlType))
         }
     }
 }
 // Load more story on scroll
 function loadMore(currentURL) {
-    offSet = offSet + 10;
     var data = {};
     var stories = ""
     var xmlhttp = new XMLHttpRequest();
