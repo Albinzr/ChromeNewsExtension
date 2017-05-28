@@ -1,0 +1,30 @@
+{
+    "manifest_version": 2,
+    "name": "News Extension",
+    "description": "News Extension",
+    "version": "1.0",
+
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html",
+        "default_title": "Todays Headlines"
+    },
+
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+
+    "background": {
+        "scripts": ["backgroundScript.js"],
+        "persistent": true
+    },
+
+
+    "permissions": [
+        "contextMenus", "tabs",
+        "*://*.thequint.com/*",
+        "*://thequint.com/"
+    ]
+}

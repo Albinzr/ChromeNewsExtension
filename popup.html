@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="popup.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <title>News Extension</title>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="header">
+            <a id="logo" class="block left" target="_blank">
+                <img class="logo left" src="logo.png" />
+                <span class="logo-text">Quintype</span>
+            </a>
+
+            <div class="right">
+
+                <div id="nav-icon2">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div id="cat-list" style="display: none">
+                    <span class="arr"></span>
+                    <ul class="drop-down" id="categories">
+                    </ul>
+                </div>
+            </div>
+            <a class="right navbar-search-button" id="nav-search-button"><img src="search-white.png" alt="search"></a>
+        </div>
+        <div style="display: none;"  class="search-box" id="search-continer">
+            <input id="search-text" type="text">
+            <button id="search-button"><img src="search.png" alt="search"></button>
+        </div>
+        <div class="story-continer" id=scroll-point>
+            <ul class="story-list" id="stories">
+                <!-- //content -->
+            </ul>
+            <div id="load-more">
+            </div>
+        </div>
+        <div class="footer">
+            <span class="right">
+                <a href="https://www.quintype.com/" id="all" target="_blank">powered by Quintype</a>
+            </span>
+        </div>
+        <!-- // error -->
+        <div id="error">
+            <div id="er-wrap">
+                <img src="" id="er-img" />
+                <p>Please try again in a few seconds</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
