@@ -1,6 +1,9 @@
 Chrome News Extension
 ==========
 
+![Demo](https://cloud.githubusercontent.com/assets/25512369/26526284/3830cc4c-4393-11e7-8288-d0b985d679c2.png)
+
+
 Installing
 
 Unpacked Extension
