@@ -1,5 +1,5 @@
 chrome.contextMenus.create({
-    title: "search with news extension",
+    title: "search with Quintype",
     contexts: ["selection"],
     onclick: search
 });
