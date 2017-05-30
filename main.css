@@ -86,6 +86,9 @@ body {
 .footer > span.right {
     display: block;
     padding: 0 22px 0 5px;
+    text-transform: capitalize;
+    opacity: 0.75;
+    letter-spacing: 1px;
 }
 
 .footer > span.right > a {
@@ -145,24 +148,27 @@ body {
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
+    width: 100%;
+    display: block
 }
 
 .drop-down > li.active > a {
     color: #0079c4;
+
 }
 
-.drop-down > li > a:hover {
+/*.drop-down > li > a:hover {
     border-bottom: 1px solid #888888;
-}
+}*/
 
 .drop-down li:hover {
     background-color: #0586d6;
     color: white;
 }
 
-.drop-down > li.active > a:hover {
+/*.drop-down > li.active > a:hover {
     border-bottom: 1px solid #0079c4;
-}
+}*/
 
 
 /* Error */

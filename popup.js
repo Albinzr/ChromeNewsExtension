@@ -24,13 +24,14 @@ function getCurrentURL(key) {
         case urlType.section:
             return baseURL + getSectionNewsURL() + section + "&" + fields;
         case urlType.search:
+            // console.log(getSearchURl())
             return getSearchURl()
     }
 }
 
 function getSearchURl() {
 
-    return baseURL + "search?=" + searchKey + "&offset=" + offSet + "&limit=" + limit
+    return baseURL + "search?q=" + searchKey + "&offset=" + offSet + "&limit=" + limit
 }
 
 function getLatestNewsURL() {
@@ -105,6 +106,22 @@ function getMenuItems(code, category) {
     xmlhttp.open("GET", trackUrl, true);
     xmlhttp.send(null);
 }
+
+function toggleLoader(objectCount) {
+
+    let loadingTag = document.getElementById('load-more')
+
+    if (objectCount < limit) {
+
+        loadMoreStatus = false
+        loadingTag.style.display = "none";
+    } else {
+
+        loadingTag.style.display = "block";
+        loadMoreStatus = true;
+    }
+
+}
 //initial story loader
 function getStories(autoLoad) {
     // debugger
@@ -115,18 +132,15 @@ function getStories(autoLoad) {
     var trackUrl = getCurrentURL(currentUrlType);
     xmlhttp.onload = function() {
         if (xmlhttp.status == 200) {
-            data = JSON.parse(xmlhttp.responseText);
-            if (Object.keys(data).length < limit) {
-                loadMoreStatus = false
-            }
-            if (autoLoad) {
 
-            }
-            loadMoreStatus = true;
+            data = JSON.parse(xmlhttp.responseText);
+
             if (currentUrlType == urlType.search) {
                 stories = data.results.stories
+                toggleLoader(Object.keys(stories).length)
             } else {
                 stories = data.stories;
+                toggleLoader(Object.keys(stories).length)
             }
 
             var storiesTag = document.getElementById("stories");
@@ -134,10 +148,8 @@ function getStories(autoLoad) {
             scrollTag.removeEventListener("scroll", scrollReachedBottom, true);
             scrollTag.addEventListener("scroll", scrollReachedBottom, true);
             storiesTag.innerHTML = "";
-            // if (currentUrlType == urlType.latest) {
-            debugger
+
             storyParser(stories);
-            // }
 
         } else if (xmlhttp.status == 503) {
             setServiceUnavailable();
@@ -186,15 +198,15 @@ function createClickEvents() {
 
 }
 //toggel search
-function toggleSearch(){
+function toggleSearch() {
     var searchToggleButton = document.getElementById("search-continer");
-     if (searchToggleButton.style.display == "none") {
-            searchToggleButton.style.display = "block";
-            // sl.setAttribute("class", 'block')
-        } else {
-            searchToggleButton.style.display = "none";
-            // sl.removeAttribute("class");
-        }   
+    if (searchToggleButton.style.display == "none") {
+        searchToggleButton.style.display = "block";
+        // sl.setAttribute("class", 'block')
+    } else {
+        searchToggleButton.style.display = "none";
+        // sl.removeAttribute("class");
+    }
 }
 //search call
 function search() {
@@ -214,23 +226,23 @@ function scrollReachedBottom(o) {
 }
 // Load more story on scroll
 function loadMore(currentURL) {
-    
     var data = {};
     var stories = ""
     var xmlhttp = new XMLHttpRequest();
     var trackUrl = currentURL;
     xmlhttp.onload = function() {
+
         if (xmlhttp.status == 200) {
+
             data = JSON.parse(xmlhttp.responseText);
-            if (Object.keys(data).length < limit) {
-                loadMoreStatus = false
-            }
-            loadMoreStatus = true;
             var stories = data.stories;
+
             if (currentUrlType == urlType.search) {
                 stories = data.results.stories
+                toggleLoader(Object.keys(stories).length)
             } else {
                 stories = data.stories;
+                toggleLoader(Object.keys(stories).length)
             }
 
             storyParser(stories);
@@ -281,7 +293,7 @@ function storyParser(stories) {
         var spanTag = document.createElement("span");
         spanTag.classList.add("story-author");
         paraTag.append(spanTag);
-        spanTag.innerHTML = "Author: " + author;
+        spanTag.innerHTML =  author;
 
         var spanTag = document.createElement("span");
         spanTag.classList.add("story-seprator");
@@ -291,7 +303,7 @@ function storyParser(stories) {
         var spanTag = document.createElement("span");
         spanTag.classList.add("story-date");
         paraTag.append(spanTag);
-        spanTag.innerHTML = "Date: " + date;
+        spanTag.innerHTML =  date;
 
         listTag.append(storyInfoContainer);
 
